@@ -1,0 +1,48 @@
+﻿<!doctype html>
+<html>
+
+	<head>
+		<title></title>
+		<style>
+			div.spicy div {
+				padding: 10px;
+				border: solid 2px blue;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div ng-app="scopeInheritance" class="spicy">
+			<div ng-controller="MainController">
+				<p>Good {{timeOfDay}}, {{name}}!</p>
+
+				<div ng-controller="ChildController">
+					<p>Good {{timeOfDay}}, {{name}}!</p>
+
+					<div ng-controller="GrandChildController">
+						<p>Good {{timeOfDay}}, {{name}}!</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="../common/angular.min.js" type="text/javascript"></script>
+		<script>
+			var myApp = angular.module('scopeInheritance', []);
+			//$scope有点像对象字面量
+			myApp.controller('MainController', ['$scope', function($scope) {
+				$scope.timeOfDay = 'morning';
+				$scope.name = 'Nikki';
+			}]);
+			myApp.controller('ChildController', ['$scope', function($scope) {
+				$scope.name = 'Mattie';
+			}]);
+			myApp.controller('GrandChildController', ['$scope', function($scope) {
+				$scope.timeOfDay = 'evening';
+				$scope.name = 'Gingerbread Baby';
+			}]);
+		</script>
+	</body>
+
+</html>

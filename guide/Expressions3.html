@@ -1,0 +1,31 @@
+﻿<!doctype html>
+<html>
+
+	<head>
+		<title></title>
+		<style>
+
+		</style>
+	</head>
+
+	<body ng-app="expressionExample">
+
+		<div class="example2" ng-controller="ExampleController">
+			Name: <input ng-model="name" type="text" />
+			<button ng-click="greet()">Greet</button>
+			<button ng-click="window.alert('Should not see me')">Won't greet</button>
+		</div>
+
+		<script src="../common/angular.min.js" type="text/javascript"></script>
+		<script>
+			angular.module('expressionExample', [])
+				.controller('ExampleController', ['$window', '$scope', function($window, $scope) {
+					$scope.name = 'World';
+					$scope.greet = function() {
+						$window.alert('Hello ' + $scope.name);
+					};
+				}]);
+		</script>
+	</body>
+
+</html>

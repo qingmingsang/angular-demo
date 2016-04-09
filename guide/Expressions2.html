@@ -1,0 +1,41 @@
+﻿<!doctype html>
+<html>
+
+	<head>
+		<title></title>
+		<style>
+
+		</style>
+	</head>
+
+	<body ng-app="expressionExample">
+
+		<div ng-controller="ExampleController" class="expressions">
+			Expression:
+			<input type='text' ng-model="expr" size="80" />
+			<button ng-click="addExp(expr)">Evaluate</button>
+			<ul>
+				<li ng-repeat="expr in exprs track by $index">
+					[ <a href="" ng-click="removeExp($index)">X</a> ]
+					<tt>{{expr}}</tt> => <span ng-bind="$parent.$eval(expr)"></span>
+				</li>
+			</ul>
+		</div>
+
+		<script src="../common/angular.min.js" type="text/javascript"></script>
+		<script>
+			angular.module('expressionExample', [])
+				.controller('ExampleController', ['$scope', function($scope) {
+					var exprs = $scope.exprs = [];
+					$scope.expr = '3*10|currency';
+					$scope.addExp = function(expr) {
+						exprs.push(expr);
+					};
+					$scope.removeExp = function(index) {
+						exprs.splice(index, 1);
+					};
+				}]);
+		</script>
+	</body>
+
+</html>
