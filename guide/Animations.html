@@ -1,0 +1,50 @@
+﻿<!doctype html>
+<html>
+
+	<head>
+		<title></title>
+		<style>
+			.sample-show-hide {
+				padding: 10px;
+				border: 1px solid black;
+				background: white;
+			}
+			
+			.sample-show-hide.ng-hide-add,
+			.sample-show-hide.ng-hide-remove {
+				-webkit-transition: all linear 0.5s;
+				-moz-transition: all linear 0.5s;
+				-o-transition: all linear 0.5s;
+				transition: all linear 0.5s;
+				display: block!important;
+			}
+			
+			.sample-show-hide.ng-hide-add.ng-hide-add-active,
+			.sample-show-hide.ng-hide-remove {
+				opacity: 0;
+			}
+			
+			.sample-show-hide.ng-hide-add,
+			.sample-show-hide.ng-hide-remove.ng-hide-remove-active {
+				opacity: 1;
+			}
+		</style>
+	</head>
+<!--ng-app="ngAnimate"重要-->
+	<body ng-app="ngAnimate">
+		<div ng-init="checked=true">
+			<label>
+    <input type="checkbox" ng-model="checked" style="float:left; margin-right:10px;"> 
+    	Is Visible...
+  			</label>
+			<div class="check-element sample-show-hide" ng-show="checked" style="clear:both;">
+				Visible...
+			</div>
+		</div>
+		<script src="../common/angular.min.js" type="text/javascript"></script>
+		<script src="../common/angular-animate.min.js" type="text/javascript"></script>
+		<script>
+		</script>
+	</body>
+
+</html>

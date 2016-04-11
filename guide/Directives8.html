@@ -1,0 +1,33 @@
+﻿<!doctype html>
+<html>
+
+	<head>
+		<title></title>
+		<style>
+
+		</style>
+	</head>
+
+	<body ng-app="docsTransclusionDirective">
+		<!--嵌入-->
+		<div ng-controller="Controller">
+			<my-dialog>Check out the contents, {{name}}!</my-dialog>
+		</div>
+		<script src="../common/angular.min.js" type="text/javascript"></script>
+		<script>
+			// in server
+			angular.module('docsTransclusionDirective', [])
+				.controller('Controller', ['$scope', function($scope) {
+					$scope.name = 'Tobias';
+				}])
+				.directive('myDialog', function() {
+					return {
+						restrict: 'E',
+						transclude: true,
+						templateUrl: 'my-dialog.html'
+					};
+				});
+		</script>
+	</body>
+
+</html>

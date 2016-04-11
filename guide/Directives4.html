@@ -1,0 +1,44 @@
+﻿<!doctype html>
+<html>
+
+	<head>
+		<title></title>
+		<style>
+
+		</style>
+	</head>
+
+	<body ng-app="docsScopeProblemExample">
+		<div ng-controller="NaomiController">
+			<my-customer></my-customer>
+		</div>
+		<hr>
+		<div ng-controller="IgorController">
+			<my-customer></my-customer>
+		</div>
+		<script src="../common/angular.min.js" type="text/javascript"></script>
+		<script>
+			// in server
+			angular.module('docsScopeProblemExample', [])
+				.controller('NaomiController', ['$scope', function($scope) {
+					$scope.customer = {
+						name: 'Naomi',
+						address: '1600 Amphitheatre'
+					};
+				}])
+				.controller('IgorController', ['$scope', function($scope) {
+					$scope.customer = {
+						name: 'Igor',
+						address: '123 Somewhere'
+					};
+				}])
+				.directive('myCustomer', function() {
+					return {
+						restrict: 'E',
+						templateUrl: 'my-customer.html'
+					};
+				});
+		</script>
+	</body>
+
+</html>

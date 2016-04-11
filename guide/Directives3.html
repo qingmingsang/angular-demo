@@ -1,0 +1,33 @@
+﻿<!doctype html>
+<html>
+
+	<head>
+		<title></title>
+		<style>
+
+		</style>
+	</head>
+
+	<body ng-app="docsTemplateUrlDirective">
+		<div ng-controller="Controller">
+			<div my-customer></div>
+		</div>
+		<script src="../common/angular.min.js" type="text/javascript"></script>
+		<script>
+		// in server
+			angular.module('docsTemplateUrlDirective', [])
+				.controller('Controller', ['$scope', function($scope) {
+					$scope.customer = {
+						name: 'Naomi',
+						address: '1600 Amphitheatre'
+					};
+				}])
+				.directive('myCustomer', function() {
+					return {
+						templateUrl: 'my-customer.html'
+					};
+				});
+		</script>
+	</body>
+
+</html>

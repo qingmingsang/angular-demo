@@ -1,0 +1,41 @@
+﻿<!doctype html>
+<html>
+
+	<head>
+		<title></title>
+		<style>
+
+		</style>
+	</head>
+
+	<body ng-app="docsIsolationExample">
+		<div ng-controller="Controller">
+			<my-customer info="naomi"></my-customer>
+		</div>
+		<script src="../common/angular.min.js" type="text/javascript"></script>
+		<script>
+			// in server
+			angular.module('docsIsolationExample', [])
+				.controller('Controller', ['$scope', function($scope) {
+					$scope.naomi = {
+						name: 'Naomi',
+						address: '1600 Amphitheatre'
+					};
+					$scope.vojta = {
+						name: 'Vojta',
+						address: '3456 Somewhere Else'
+					};
+				}])
+				.directive('myCustomer', function() {
+					return {
+						restrict: 'E',
+						scope: {
+							customerInfo: '=info'
+						},
+						templateUrl: 'my-customer-plus-vojta.html'
+					};
+				});
+		</script>
+	</body>
+
+</html>

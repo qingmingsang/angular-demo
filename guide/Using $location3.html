@@ -1,0 +1,31 @@
+﻿<!doctype html>
+<html>
+
+	<head>
+		<title></title>
+		<style>
+
+		</style>
+	</head>
+
+	<body ng-app="locationExample">
+		<div ng-controller="LocationController">
+			<input type="text" ng-model="locationPath" />
+		</div>
+		<script src="../common/angular.min.js" type="text/javascript"></script>
+		<script>
+			angular.module('locationExample', [])
+				.controller('LocationController', ['$scope', '$location', function($scope, $location) {
+					$scope.$watch('locationPath', function(path) {
+						$location.path(path);
+					});
+					$scope.$watch(function() {
+						return $location.path();
+					}, function(path) {
+						$scope.locationPath = path;
+					});
+				}]);
+		</script>
+	</body>
+
+</html>

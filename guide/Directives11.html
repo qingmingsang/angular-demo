@@ -1,0 +1,66 @@
+﻿<!doctype html>
+<html>
+
+	<head>
+		<title></title>
+		<style>
+
+		</style>
+	</head>
+
+	<body ng-app="docsTabsExample">
+		<my-tabs>
+			<my-pane title="Hello">
+				<h4>Hello</h4>
+				<p>Lorem ipsum dolor sit amet</p>
+			</my-pane>
+			<my-pane title="World">
+				<h4>World</h4>
+				<em>Mauris elementum elementum enim at suscipit.</em>
+				<p><a href ng-click="i = i + 1">counter: {{i || 0}}</a></p>
+			</my-pane>
+		</my-tabs>
+		<script src="../common/angular.min.js" type="text/javascript"></script>
+		<script>
+			angular.module('docsTabsExample', [])
+				.directive('myTabs', function() {
+					return {
+						restrict: 'E',
+						transclude: true,
+						scope: {},
+						controller: function($scope) {
+							var panes = $scope.panes = [];
+							$scope.select = function(pane) {
+								angular.forEach(panes, function(pane) {
+									pane.selected = false;
+								});
+								pane.selected = true;
+							};
+							this.addPane = function(pane) {
+								if (panes.length === 0) {
+									$scope.select(pane);
+								}
+								panes.push(pane);
+							};
+						},
+						templateUrl: 'my-tabs.html'
+					};
+				})
+				.directive('myPane', function() {
+					return {
+						require: '^myTabs',
+						restrict: 'E',
+						transclude: true,
+						scope: {
+							title: '@'
+						},
+						link: function(scope, element, attrs, tabsCtrl) {
+							tabsCtrl.addPane(scope);
+						},
+						templateUrl: 'my-pane.html'
+					};
+				});
+		</script>
+	</body>
+
+</html>
