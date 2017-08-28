@@ -1,3 +1,1 @@
-# angularjs
-
-demo
+学习向、练手向示例
