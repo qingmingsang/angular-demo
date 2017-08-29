@@ -1,1 +1,3 @@
-学习向、练手向示例
+# angular-demo
+
+You can master angularjs through these demos. 
